@@ -1,1 +1,1 @@
-export * from './accommodations.sql';
+export * from './accommodations.db';

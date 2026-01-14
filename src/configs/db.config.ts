@@ -6,4 +6,4 @@ export const DbConfigSchema = z.object({
 
 export type DbConfig = z.infer<typeof DbConfigSchema>;
 
-export const dbConfigParsed = DbConfigSchema.parse(process.env);
+export const dbConfig = DbConfigSchema.parse(process.env);

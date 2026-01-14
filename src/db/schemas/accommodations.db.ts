@@ -1,5 +1,5 @@
 import { pgEnum, pgTable, real, smallint, text, varchar } from 'drizzle-orm/pg-core';
-import { commonFields } from '../helpers/common-fields';
+import { commonFields } from '../helpers/common-fields.db';
 
 export const accommodationType = pgEnum('accommodation-type', ['cabin', 'room']);
 
@@ -11,5 +11,5 @@ export const accommodations = pgTable('cottages', {
   price: smallint().notNull(),
   rating: real(),
   description: text().notNull(),
-  // research the ability to store photos in db / uploadthing
+  photos: varchar().array().notNull(),
 });

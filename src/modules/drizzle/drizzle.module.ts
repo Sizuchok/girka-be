@@ -1,28 +1,27 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '../../config/config.module';
-import { DbConfigService } from '../../config/db/db-config.service';
+import { Global, Module } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from '../../db/schemas';
-import { IN_TOKEN } from '../../common/const';
+import { dbConfig } from '../../configs/db.config';
+import { injectionToken } from '../../common/helpers/injection-token.helper';
 
+@Global()
 @Module({
   providers: [
     {
-      provide: IN_TOKEN.DRIZZLE,
-      useFactory: (dbConfig: DbConfigService) => {
+      provide: injectionToken.drizzle,
+      useFactory: () => {
         const db = drizzle({
           connection: {
-            connectionString: dbConfig.dbUrl,
+            connectionString: dbConfig.DB_URL,
           },
           schema,
+          logger: true,
         });
 
         return db;
       },
-      inject: [DbConfigService],
     },
   ],
-  imports: [ConfigModule],
-  exports: [IN_TOKEN.DRIZZLE],
+  exports: [injectionToken.drizzle],
 })
 export class DrizzleModule {}
