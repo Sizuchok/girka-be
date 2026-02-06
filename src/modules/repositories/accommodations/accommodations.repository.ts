@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectDb } from '../../../common/decorators/inject-db.decorator';
 import { accommodations } from '../../../db/schemas';
 import { eq } from 'drizzle-orm';
-import { DrizzleDb } from '../../drizzle/types/drizzle-module.types';
+import { DrizzleDb } from '../../../common/modules/drizzle/types/drizzle-module.types';
 
 @Injectable()
 export class AccommodationsRepository {

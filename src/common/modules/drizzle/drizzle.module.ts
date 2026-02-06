@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import * as schema from '../../db/schemas';
-import { dbConfig } from '../../configs/db.config';
-import { injectionToken } from '../../common/helpers/injection-token.helper';
+import * as schema from '../../../db/schemas';
+import { dbConfig } from '../../../configs/db.config';
+import { injectionToken } from '../../helpers/injection-token.helper';
 
 @Global()
 @Module({

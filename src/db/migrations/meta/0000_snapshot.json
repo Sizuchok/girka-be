@@ -1,11 +1,11 @@
 {
-  "id": "dd85cb4c-3874-4813-8f6e-164e6c107fcd",
+  "id": "ad386c1b-c7ad-4478-8ff9-91fbce6f594f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.cottages": {
-      "name": "cottages",
+    "public.accommodations": {
+      "name": "accommodations",
       "schema": "",
       "columns": {
         "id": {
@@ -19,17 +19,19 @@
           "name": "createdAt",
           "type": "timestamp with time zone",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "default": "now()"
         },
         "updatedAt": {
           "name": "updatedAt",
           "type": "timestamp with time zone",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "default": "now()"
         },
         "title": {
           "name": "title",
-          "type": "varchar",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": true
         },
@@ -48,7 +50,7 @@
         },
         "price": {
           "name": "price",
-          "type": "smallint",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -76,7 +78,24 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
-      "checkConstraints": {},
+      "checkConstraints": {
+        "min_title_length": {
+          "name": "min_title_length",
+          "value": "char_length(\"accommodations\".\"title\") >= 3"
+        },
+        "capacity_positive": {
+          "name": "capacity_positive",
+          "value": "\"accommodations\".\"capacity\" > 1 AND \"accommodations\".\"capacity\" <= 100"
+        },
+        "price_positive": {
+          "name": "price_positive",
+          "value": "\"accommodations\".\"price\" > 0"
+        },
+        "rating_valid": {
+          "name": "rating_valid",
+          "value": "\"accommodations\".\"rating\" IS NULL OR (\"accommodations\".\"rating\" >= 0 AND \"accommodations\".\"rating\" <= 5)"
+        }
+      },
       "isRLSEnabled": false
     }
   },
@@ -85,8 +104,8 @@
       "name": "accommodation-type",
       "schema": "public",
       "values": [
-        "cabin",
-        "room"
+        "Cabin",
+        "Room"
       ]
     }
   },

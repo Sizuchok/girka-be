@@ -25,13 +25,15 @@
     "add:decorator:common": "nest g decorator common/decorators/%npm_config_name% --flat",
     "add:repository": "nest g mo modules/repositories/%npm_config_name% --no-spec && nest g pr modules/repositories/%npm_config_name%/%npm_config_name%Repository --no-spec --flat",
     "add:service": "nest g mo modules/services/%npm_config_name% --no-spec && nest g s modules/services/%npm_config_name%/%npm_config_name% --no-spec --flat",
-    "add:client": "nest g mo modules/integrations/%npm_config_name% --no-spec && nest g pr modules/integrations/%npm_config_name%/%npm_config_name%Client --no-spec --flat"
+    "add:client": "nest g mo modules/integrations/%npm_config_name% --no-spec && nest g pr modules/integrations/%npm_config_name%/%npm_config_name%Client --no-spec --flat",
+    "add:controller": "nest g co entrypoints/api/%npm_config_name% --no-spec"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "drizzle-orm": "^0.40.0",
+    "nestjs-zod": "^5.1.1",
     "pg": "^8.14.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
