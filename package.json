@@ -33,6 +33,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.2.6",
+    "@scalar/nestjs-api-reference": "^1.0.23",
     "drizzle-orm": "^0.40.0",
     "nestjs-zod": "^5.1.1",
     "pg": "^8.14.0",
