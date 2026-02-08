@@ -11,10 +11,10 @@ export const ZodValidationPipe = createZodValidationPipe({
     return new BadRequestException({
       message: 'Request validation failed.',
 
-      errors: error.errors.map((error) => {
+      errors: error.issues.map((error) => {
         const field = error.path.join('.');
 
-        return `Field '${field}': ${error.message}`;
+        return `Field '${field}'. ${error.message}`;
       }),
     });
   },

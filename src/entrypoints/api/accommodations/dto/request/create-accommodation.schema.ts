@@ -8,7 +8,9 @@ export const CreateAccommodationSchema = z.object({
   capacity: z.number().int().positive().min(1).max(100),
   price: z.number().int().positive().min(1),
   rating: z.number().min(0).max(5).optional(),
-  description: z.string().min(10),
+  description: z.string().min(10).meta({
+    example: 'This is a nice cabin.',
+  }),
 });
 
 export type TCreateAccommodation = z.infer<typeof CreateAccommodationSchema>;

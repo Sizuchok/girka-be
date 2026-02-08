@@ -8,6 +8,6 @@ export class AccommodationsController {
 
   @Post()
   public createAccommodation(@Body() body: CreateAccommodationDto) {
-    console.log(body);
+    return body;
   }
 }
