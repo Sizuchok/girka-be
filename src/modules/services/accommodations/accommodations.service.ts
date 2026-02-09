@@ -1,10 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AccommodationsRepository } from '../../repositories/accommodations/accommodations.repository';
-import { TCreateAccommodation } from '../../../entrypoints/api/accommodations/dto/request/create-accommodation.schema';
+import { CreateAccommodation } from '../../../entrypoints/api/accommodations/dto/request/create-accommodation.schema';
 
 @Injectable()
 export class AccommodationsService {
   constructor(private readonly accommodationsRepository: AccommodationsRepository) {}
 
-  public async createAccommodation(payload: TCreateAccommodation) {}
+  public createAccommodation(payload: CreateAccommodation) {
+    return this.accommodationsRepository.createAccommodation(payload);
+  }
+
+  public async retrieveAccommodation(id: string) {
+    const accommodation = await this.accommodationsRepository.retrieveAccommodation(id);
+
+    if (!accommodation) {
+      throw new NotFoundException('Accommodation not found.');
+    }
+
+    return accommodation;
+  }
 }

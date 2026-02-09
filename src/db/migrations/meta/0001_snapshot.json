@@ -1,0 +1,122 @@
+{
+  "id": "d39efa18-78b6-4a51-9deb-9efadb3ba935",
+  "prevId": "ad386c1b-c7ad-4478-8ff9-91fbce6f594f",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.accommodations": {
+      "name": "accommodations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "accommodation-type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capacity": {
+          "name": "capacity",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "photos": {
+          "name": "photos",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "min_title_length": {
+          "name": "min_title_length",
+          "value": "char_length(\"accommodations\".\"title\") >= 3"
+        },
+        "capacity_positive": {
+          "name": "capacity_positive",
+          "value": "\"accommodations\".\"capacity\" > 1 AND \"accommodations\".\"capacity\" <= 100"
+        },
+        "price_positive": {
+          "name": "price_positive",
+          "value": "\"accommodations\".\"price\" > 0"
+        },
+        "rating_valid": {
+          "name": "rating_valid",
+          "value": "\"accommodations\".\"rating\" IS NULL OR (\"accommodations\".\"rating\" >= 0 AND \"accommodations\".\"rating\" <= 5)"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.accommodation-type": {
+      "name": "accommodation-type",
+      "schema": "public",
+      "values": [
+        "Cabin",
+        "Room"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

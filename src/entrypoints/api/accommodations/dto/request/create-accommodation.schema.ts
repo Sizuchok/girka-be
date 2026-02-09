@@ -3,7 +3,9 @@ import { accommodationType } from '../../../../../db/schemas';
 import { createZodDto } from 'nestjs-zod';
 
 export const CreateAccommodationSchema = z.object({
-  title: z.string().min(3).max(100),
+  title: z.string().min(3).max(100).meta({
+    example: '4-person cabin',
+  }),
   type: z.enum(accommodationType.enumValues),
   capacity: z.number().int().positive().min(1).max(100),
   price: z.number().int().positive().min(1),
@@ -13,6 +15,6 @@ export const CreateAccommodationSchema = z.object({
   }),
 });
 
-export type TCreateAccommodation = z.infer<typeof CreateAccommodationSchema>;
+export type CreateAccommodation = z.infer<typeof CreateAccommodationSchema>;
 
 export class CreateAccommodationDto extends createZodDto(CreateAccommodationSchema) {}

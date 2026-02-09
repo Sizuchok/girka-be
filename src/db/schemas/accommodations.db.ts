@@ -31,11 +31,11 @@ export const accommodations = pgTable(
     price: integer().notNull(),
     rating: real(),
     description: text().notNull(),
-    photos: varchar().array().notNull(),
+    photos: varchar().array(),
   },
   (table) => [
     check('min_title_length', sql`char_length(${table.title}) >= 3`),
-    check('capacity_positive', sql`${table.capacity} > 1 AND ${table.capacity} <= 100`),
+    check('capacity_positive', sql`${table.capacity} >= 1 AND ${table.capacity} <= 100`),
     check('price_positive', sql`${table.price} > 0`),
     check(
       'rating_valid',

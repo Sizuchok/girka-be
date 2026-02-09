@@ -1,0 +1,2 @@
+ALTER TABLE "accommodations" DROP CONSTRAINT "capacity_positive";--> statement-breakpoint
+ALTER TABLE "accommodations" ADD CONSTRAINT "capacity_positive" CHECK ("accommodations"."capacity" >= 1 AND "accommodations"."capacity" <= 100);

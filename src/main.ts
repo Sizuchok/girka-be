@@ -25,6 +25,10 @@ async function bootstrap() {
     apiReference({
       content: documentFactory(),
       theme: 'deepSpace',
+      defaultOpenAllTags: true,
+      hideModels: true,
+      expandAllResponses: true,
+      orderSchemaPropertiesBy: 'preserve',
     }),
   );
 
